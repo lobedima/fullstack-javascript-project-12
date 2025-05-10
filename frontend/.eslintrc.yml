@@ -25,4 +25,7 @@ rules:
   no-underscore-dangle: [2, { allow: ["__filename", "__dirname"] }]
   react/function-component-definition: [2, { namedComponents: "arrow-function" }]
   react/jsx-filename-extension: [1, { extensions: [".js", ".jsx"] }]
-  
+  semi: [2, "always"]  # Явно включаем точки с запятой
+  no-unused-vars: ["error", { varsIgnorePattern: "^React$" }]
+  multiline-ternary: [0]  # Отключаем принудительные переносы
+  react/jsx-closing-bracket-location: [1, "line-aligned"]
