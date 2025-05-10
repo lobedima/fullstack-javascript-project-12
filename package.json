@@ -20,13 +20,9 @@
   },
   "homepage": "https://github.com/lobedima/fullstack-javascript-project-12#readme",
   "devDependencies": {
-    "eslint-plugin-functional": "^6.5.1",
-    "eslint-plugin-import": "^2.31.0"
+    "eslint-plugin-functional": "^6.5.1"
   },
   "dependencies": {
-    "@hexlet/chat-server": "^2.0.3",
-    "@rollbar/react": "^0.12.1",
-    "axios": "^1.9.0",
-    "rollbar": "^2.26.4"
+    "@hexlet/chat-server": "^2.0.3"
   }
 }
