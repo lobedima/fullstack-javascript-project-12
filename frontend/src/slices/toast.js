@@ -1,11 +1,11 @@
-import { createSelector, createSlice } from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   message: null,
-};
+}
 
-const isRejectedAction = (action) => action.type.endsWith('rejected');
-const isFulfilledAction = (action) => action.type.endsWith('fulfilled');
+const isRejectedAction = (action) => action.type.endsWith('rejected')
+const isFulfilledAction = (action) => action.type.endsWith('fulfilled')
 
 const toastSlice = createSlice({
   name: 'toast',
@@ -23,20 +23,20 @@ const toastSlice = createSlice({
           case /deleteChannel/.test(payload.type):
             return Object.assign(state, { message: { id: 0, code: 'CHANNEL_DELETED' } });
           default:
-            break;
+            break
         }
-        return state;
+        return state
       });
   },
-});
+})
 
 export const selectToastMessage = createSelector(
   (state) => state.toast,
   ({ message }) => message,
-);
+)
 
 // export const selectToastMessage = (state) => state.toast.message;
 
-export const toastActions = toastSlice.actions;
+export const toastActions = toastSlice.actions
 
-export default toastSlice.reducer;
+export default toastSlice.reducer
