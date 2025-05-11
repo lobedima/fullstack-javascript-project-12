@@ -20,7 +20,7 @@ plugins:
 
 rules:
   semi: 0
-  "@stylistic/semi": ["error", "never"]  # Без @
+  "@stylistic/semi": ["error", "always"]
   "@stylistic/indent": ["error", 2]  # Без @
   "react/react-in-jsx-scope": 0
   "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }]
