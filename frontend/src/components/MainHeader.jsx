@@ -1,4 +1,7 @@
-import React, { useEffect } from 'react'
+/* eslint-disable indent */
+/* eslint-disable @stylistic/indent */
+/* eslint-disable react/jsx-indent */
+import { useEffect } from 'react'
 import Button from 'react-bootstrap/Button'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -43,17 +46,17 @@ const MainHeader = () => {
           {
             authInfo.token
               ? (
-                <Button
-                  variant="primary"
-                  href={pagesRoutes.login()}
-                  onClick={handleAccountExit}
-                  aria-label={t('aria.leave')}
-                >
-                  {
-                    t('leave')
-                  }
-                </Button>
-              )
+                  <Button
+                    variant="primary"
+                    href={pagesRoutes.login()}
+                    onClick={handleAccountExit}
+                    aria-label={t('aria.leave')}
+                  >
+                    {
+                      t('leave')
+                    }
+                  </Button>
+                )
               : null
           }
         </div>

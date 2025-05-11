@@ -1,4 +1,7 @@
-import React, {
+/* eslint-disable indent */
+/* eslint-disable @stylistic/indent */
+/* eslint-disable react/jsx-indent */
+import {
   useEffect, useState,
 } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -107,12 +110,12 @@ const Main = () => {
         {
           modalVariant
             ? (
-              <CurrentModal
-                handleSetState={setShowModal}
-                modalState={modalVariant}
-                extraData={idModalChannel}
-              />
-            )
+                <CurrentModal
+                  handleSetState={setShowModal}
+                  modalState={modalVariant}
+                  extraData={idModalChannel}
+                />
+              )
             : null
         }
       </>

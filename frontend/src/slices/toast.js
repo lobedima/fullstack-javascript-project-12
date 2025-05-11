@@ -26,7 +26,7 @@ const toastSlice = createSlice({
             break
         }
         return state
-      })
+      });
   },
 })
 

@@ -114,7 +114,7 @@ export const channelsSelectors = channelsAdapter.getSelectors(
 export const selectCurrentChannel = (state) => {
   const id = state.channels.idSelectedChannel
   return channelsSelectors.selectById(state, id)
-}
+};
 
 export const selectChannelById = (id) => (state) => channelsSelectors
   .selectById(state, id)

@@ -58,7 +58,7 @@ const messagesSlice = createSlice({
           .filter(([, { channelId }]) => channelId === payload.id)
           .map(([key]) => key)
         messagesAdapter.removeMany(state, entitiesForDeleting)
-      })
+      });
   },
 })
 

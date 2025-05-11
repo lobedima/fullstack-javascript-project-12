@@ -12,7 +12,7 @@ export const loginRequest = (values) => axios({
 }).then((res) => {
   const token = JSON.stringify(res.data)
   localStorage.setItem('user', token)
-})
+});
 
 export const signUpRequest = (values) => axios({
   method: 'post',

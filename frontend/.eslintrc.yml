@@ -50,3 +50,4 @@ rules:
   "testing-library/no-debug": 0
   "@stylistic/arrow-parens": ["error", "always"]
   '@stylistic/multiline-ternary': ['error', 'always']
+  "@stylistic/brace-style": ["error", "1tbs", { "allowSingleLine": true }]
