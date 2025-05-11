@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
 import { Formik } from 'formik'
 import Container from 'react-bootstrap/Container'

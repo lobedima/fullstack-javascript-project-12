@@ -1,6 +1,3 @@
-/* eslint-disable indent */
-/* eslint-disable @stylistic/indent */
-/* eslint-disable react/jsx-indent */
 import {
   useEffect, useState,
 } from 'react'

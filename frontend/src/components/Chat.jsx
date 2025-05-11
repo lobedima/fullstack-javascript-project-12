@@ -1,6 +1,3 @@
-/* eslint-disable indent */
-/* eslint-disable @stylistic/indent */
-/* eslint-disable react/jsx-indent */
 import { useEffect, useRef, useState } from 'react'
 import leo from 'leo-profanity'
 import { useTranslation } from 'react-i18next'

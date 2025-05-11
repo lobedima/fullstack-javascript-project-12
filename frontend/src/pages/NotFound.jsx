@@ -1,9 +1,3 @@
-/* eslint-disable react/jsx-closing-tag-location */
-/* eslint-disable indent */
-/* eslint-disable react/jsx-indent */
-/* eslint-disable react/jsx-closing-bracket-location */
-/* eslint-disable react/jsx-indent-props */
-/* eslint-disable @stylistic/indent */
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
