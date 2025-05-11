@@ -26,7 +26,9 @@ const AddChannel = ({ handleSetState, modalState }) => {
         if (!channel) {
           dispatch(postNewChannel({ token, channelName }))
           handleSetState(false)
-        } else {
+        } 
+        else
+        {
           formik.setErrors({
             channelName: t('errors.channelExists'),
           })
