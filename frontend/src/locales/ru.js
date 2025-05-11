@@ -150,4 +150,4 @@ export default {
     CHANNEL_RENAMED: 'Канал переименован',
     CHANNEL_DELETED: 'Канал удалён',
   },
-};
+}

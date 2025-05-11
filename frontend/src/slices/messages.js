@@ -3,13 +3,13 @@ import {
   createEntityAdapter,
   createAsyncThunk,
   createSelector,
-} from '@reduxjs/toolkit';
+} from '@reduxjs/toolkit'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import axios from 'axios';
-import { messages as messagesRoute } from '../utils/routes.js';
-import { deleteChannel } from './channels.js';
+import axios from 'axios'
+import { messages as messagesRoute } from '../utils/routes.js'
+import { deleteChannel } from './channels.js'
 
-const messagesAdapter = createEntityAdapter();
+const messagesAdapter = createEntityAdapter()
 
 export const sendMessage = createAsyncThunk(
   'messages/sendMessage',
@@ -22,10 +22,10 @@ export const sendMessage = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       },
-    );
-    return response.data;
+    )
+    return response.data
   },
-);
+)
 
 export const fetchMessages = createAsyncThunk(
   'messages/fetchMessages',
@@ -35,12 +35,12 @@ export const fetchMessages = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      });
-    return response.data;
+      })
+    return response.data
   },
-);
+)
 
-const initialState = messagesAdapter.getInitialState();
+const initialState = messagesAdapter.getInitialState()
 
 const messagesSlice = createSlice({
   name: 'messages',
@@ -56,15 +56,15 @@ const messagesSlice = createSlice({
       .addCase(deleteChannel.fulfilled, (state, { payload }) => {
         const entitiesForDeleting = Object.entries(state.entities)
           .filter(([, { channelId }]) => channelId === payload.id)
-          .map(([key]) => key);
-        messagesAdapter.removeMany(state, entitiesForDeleting);
-      });
+          .map(([key]) => key)
+        messagesAdapter.removeMany(state, entitiesForDeleting)
+      })
   },
-});
+})
 
 export const messagesSelectors = messagesAdapter.getSelectors(
   (state) => state.messages,
-);
+)
 
 export const selectMessages = createSelector(
   [
@@ -73,11 +73,11 @@ export const selectMessages = createSelector(
   ],
   ({ entities }, { idSelectedChannel }) => {
     const neededMessages = Object.values(entities)
-      .filter(({ channelId }) => channelId === idSelectedChannel);
+      .filter(({ channelId }) => channelId === idSelectedChannel)
 
-    return neededMessages;
+    return neededMessages
   },
-);
+)
 
-export const messagesActions = messagesSlice.actions;
-export default messagesSlice.reducer;
+export const messagesActions = messagesSlice.actions
+export default messagesSlice.reducer

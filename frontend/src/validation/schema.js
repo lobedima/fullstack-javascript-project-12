@@ -1,4 +1,4 @@
-import * as yup from 'yup';
+import * as yup from 'yup'
 
 export default yup.setLocale({
   mixed: {
@@ -9,7 +9,7 @@ export default yup.setLocale({
     min: 'minLength',
     max: 'maxLength',
   },
-});
+})
 
 export const loginSchema = yup.object().shape({
   username: yup
@@ -18,7 +18,7 @@ export const loginSchema = yup.object().shape({
     .max(20),
   password: yup
     .string(),
-});
+})
 
 export const channelsNamingSchema = yup.object({
   channelName: yup
@@ -26,7 +26,7 @@ export const channelsNamingSchema = yup.object({
     .min(3)
     .max(20)
     .required(),
-});
+})
 
 export const signUpSchema = yup.object({
   username: yup
@@ -42,4 +42,4 @@ export const signUpSchema = yup.object({
     .string()
     .oneOf([yup.ref('password'), null])
     .required(),
-});
+})

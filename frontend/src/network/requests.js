@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import axios from 'axios';
-import { users as usersRoutes } from '../utils/routes.js';
+import axios from 'axios'
+import { users as usersRoutes } from '../utils/routes.js'
 
 export const loginRequest = (values) => axios({
   method: 'post',
@@ -10,9 +10,9 @@ export const loginRequest = (values) => axios({
     password: values.password,
   },
 }).then((res) => {
-  const token = JSON.stringify(res.data);
-  localStorage.setItem('user', token);
-});
+  const token = JSON.stringify(res.data)
+  localStorage.setItem('user', token)
+})
 
 export const signUpRequest = (values) => axios({
   method: 'post',
@@ -21,4 +21,4 @@ export const signUpRequest = (values) => axios({
     username: values.username,
     password: values.password,
   },
-});
+})

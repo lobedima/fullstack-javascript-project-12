@@ -2,12 +2,12 @@ import {
   createSlice,
   createEntityAdapter,
   createAsyncThunk,
-} from '@reduxjs/toolkit';
+} from '@reduxjs/toolkit'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import axios from 'axios';
-import { channels as channelsRoute } from '../utils/routes.js';
+import axios from 'axios'
+import { channels as channelsRoute } from '../utils/routes.js'
 
-const channelsAdapter = createEntityAdapter();
+const channelsAdapter = createEntityAdapter()
 
 export const fetchChannels = createAsyncThunk(
   'channels/fetchChannels',
@@ -17,10 +17,10 @@ export const fetchChannels = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      });
-    return response.data;
+      })
+    return response.data
   },
-);
+)
 
 export const postNewChannel = createAsyncThunk(
   'channels/postNewChannel',
@@ -30,10 +30,10 @@ export const postNewChannel = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      });
-    return response.data;
+      })
+    return response.data
   },
-);
+)
 
 export const renameChannel = createAsyncThunk(
   'channels/renameChannel',
@@ -43,10 +43,10 @@ export const renameChannel = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      });
-    return response.data;
+      })
+    return response.data
   },
-);
+)
 
 export const deleteChannel = createAsyncThunk(
   'channels/deleteChannel',
@@ -56,12 +56,12 @@ export const deleteChannel = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      });
-    return response.data;
+      })
+    return response.data
   },
-);
+)
 
-const initialState = channelsAdapter.getInitialState();
+const initialState = channelsAdapter.getInitialState()
 
 const channelsSlice = createSlice({
   name: 'channels',
@@ -75,49 +75,49 @@ const channelsSlice = createSlice({
       channelsAdapter.updateOne(state, {
         id: payload.id,
         changes: payload,
-      });
+      })
     },
     removeChannelById: channelsAdapter.removeOne,
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchChannels.fulfilled, (state, { payload }) => {
-        channelsAdapter.setAll(state, payload);
+        channelsAdapter.setAll(state, payload)
         if (state.idSelectedChannel === null) {
           return Object.assign(state, {
             idSelectedChannel: payload[0].id,
-          });
+          })
         }
-        return state;
+        return state
       })
       .addCase(deleteChannel.fulfilled, (state, { payload }) => {
-        channelsAdapter.removeOne(state, payload.id);
+        channelsAdapter.removeOne(state, payload.id)
         if (state.idSelectedChannel === payload.id) {
           return Object.assign(state, {
             idSelectedChannel: '1',
-          });
+          })
         }
-        return state;
+        return state
       })
       .addCase(postNewChannel.fulfilled, (state, { payload }) => Object.assign(state, {
         idSelectedChannel: payload.id,
-      }));
+      }))
   },
-});
+})
 
-export const selectCurrentChannelId = (state) => state.channels.idSelectedChannel;
+export const selectCurrentChannelId = (state) => state.channels.idSelectedChannel
 
 export const channelsSelectors = channelsAdapter.getSelectors(
   (state) => state.channels,
-);
+)
 
 export const selectCurrentChannel = (state) => {
-  const id = state.channels.idSelectedChannel;
-  return channelsSelectors.selectById(state, id);
-};
+  const id = state.channels.idSelectedChannel
+  return channelsSelectors.selectById(state, id)
+}
 
 export const selectChannelById = (id) => (state) => channelsSelectors
-  .selectById(state, id);
+  .selectById(state, id)
 
-export const channelsActions = channelsSlice.actions;
-export default channelsSlice.reducer;
+export const channelsActions = channelsSlice.actions
+export default channelsSlice.reducer
