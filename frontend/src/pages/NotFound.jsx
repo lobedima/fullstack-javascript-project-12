@@ -42,9 +42,9 @@ const NotFound = () => {
               userData
                 ? null
                 : (
-                  <Card.Footer
-                      className="text-center p-3"
-                    >
+                    <Card.Footer
+                        className="text-center p-3"
+                   >
                       <span
                         className="m-1"
                       >
@@ -54,14 +54,14 @@ const NotFound = () => {
                         href="/signup"
                         aria-label={t('aria.linkRegisterAccount')}
                         onClick={(e) => {
-                        e.preventDefault()
-                    navigate('/signup')
-                 }}
-                    >
-                      {t('registerAccount')}
-                    </Card.Link>
-                  </Card.Footer>
-                )
+                          e.preventDefault()
+                      navigate('/signup')
+                  }}
+                      >
+                        {t('registerAccount')}
+                      </Card.Link>
+                    </Card.Footer>
+                  )
             }
           </Card>
         </Col>

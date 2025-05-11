@@ -1,7 +1,6 @@
 import { ErrorBoundary, Provider as RollBarProvider } from '@rollbar/react'
 import ReactDOM from 'react-dom/client'
 import i18next from 'i18next'
-import React from 'react'
 import { I18nextProvider, initReactI18next } from 'react-i18next'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'

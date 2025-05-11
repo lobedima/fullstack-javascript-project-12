@@ -58,18 +58,18 @@ const messagesSlice = createSlice({
           .filter(([, { channelId }]) => channelId === payload.id)
           .map(([key]) => key)
         messagesAdapter.removeMany(state, entitiesForDeleting)
-      });
+      })
   },
 })
 
 export const messagesSelectors = messagesAdapter.getSelectors(
-  (state) => state.messages,
+  state => state.messages,
 )
 
 export const selectMessages = createSelector(
   [
-    (state) => state.messages,
-    (state) => state.channels,
+    state => state.messages,
+    state => state.channels,
   ],
   ({ entities }, { idSelectedChannel }) => {
     const neededMessages = Object.values(entities)

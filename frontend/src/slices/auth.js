@@ -14,7 +14,7 @@ const authSlice = createSlice({
       token: null,
     }),
   },
-  extraReducers: (builder) => builder
+  extraReducers: builder => builder
     .addCase(fetchChannels.rejected, (state, payload) => {
       if (payload.error.code === 'ERR_BAD_REQUEST') {
         authSlice.actions.removeAuth()
@@ -23,6 +23,6 @@ const authSlice = createSlice({
     }),
 })
 
-export const selectAuth = (state) => state.auth
+export const selectAuth = state => state.auth
 export const authActions = authSlice.actions
 export default authSlice.reducer

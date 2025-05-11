@@ -17,4 +17,4 @@ export default socket
   })
   .on('removeChannel', (payload) => {
     store.dispatch(channelsActions.removeChannelById(payload))
-  });
+  })

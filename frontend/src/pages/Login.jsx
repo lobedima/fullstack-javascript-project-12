@@ -1,4 +1,3 @@
-import React from 'react'
 import { Formik } from 'formik'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
@@ -59,7 +58,7 @@ const Login = () => {
                 }}
               >
                 {
-                  (props) => (
+                  props => (
                     <Form
                       noValidate
                       onSubmit={props.handleSubmit}

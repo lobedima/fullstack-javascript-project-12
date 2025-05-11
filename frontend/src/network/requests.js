@@ -1,8 +1,7 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios'
 import { users as usersRoutes } from '../utils/routes.js'
 
-export const loginRequest = (values) => axios({
+export const loginRequest = values => axios({
   method: 'post',
   url: usersRoutes.login(),
   data: {
@@ -12,9 +11,9 @@ export const loginRequest = (values) => axios({
 }).then((res) => {
   const token = JSON.stringify(res.data)
   localStorage.setItem('user', token)
-});
+})
 
-export const signUpRequest = (values) => axios({
+export const signUpRequest = values => axios({
   method: 'post',
   url: usersRoutes.signup(),
   data: {

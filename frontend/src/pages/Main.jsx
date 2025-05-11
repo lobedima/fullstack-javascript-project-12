@@ -52,7 +52,7 @@ const Main = () => {
     setShowModal('addChannel')
   }
 
-  const channelsModals = (id) => ({
+  const channelsModals = id => ({
     handleDeleteChannel: () => {
       setIdModalChannel(id)
       setShowModal('deleteChannel')

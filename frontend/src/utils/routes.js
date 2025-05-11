@@ -15,13 +15,13 @@ export const users = {
 export const channels = {
   getAll: () => `${verApi}/channels`,
   post: () => `${verApi}/channels`,
-  patch: (channelId) => `${verApi}/channels/${channelId}`,
-  delete: (channelId) => `${verApi}/channels/${channelId}`,
+  patch: channelId => `${verApi}/channels/${channelId}`,
+  delete: channelId => `${verApi}/channels/${channelId}`,
 }
 
 export const messages = {
   getAll: () => `${verApi}/messages`,
   post: () => `${verApi}/messages`,
-  patch: (messageId) => `${verApi}/messages/${messageId}`,
-  delete: (messageId) => `${verApi}/messages/${messageId}`,
+  patch: messageId => `${verApi}/messages/${messageId}`,
+  delete: messageId => `${verApi}/messages/${messageId}`,
 }

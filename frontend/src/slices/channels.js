@@ -105,18 +105,18 @@ const channelsSlice = createSlice({
   },
 })
 
-export const selectCurrentChannelId = (state) => state.channels.idSelectedChannel
+export const selectCurrentChannelId = state => state.channels.idSelectedChannel
 
 export const channelsSelectors = channelsAdapter.getSelectors(
-  (state) => state.channels,
+  state => state.channels,
 )
 
 export const selectCurrentChannel = (state) => {
   const id = state.channels.idSelectedChannel
   return channelsSelectors.selectById(state, id)
-};
+}
 
-export const selectChannelById = (id) => (state) => channelsSelectors
+export const selectChannelById = id => state => channelsSelectors
   .selectById(state, id)
 
 export const channelsActions = channelsSlice.actions

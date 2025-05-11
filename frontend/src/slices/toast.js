@@ -4,8 +4,8 @@ const initialState = {
   message: null,
 }
 
-const isRejectedAction = (action) => action.type.endsWith('rejected')
-const isFulfilledAction = (action) => action.type.endsWith('fulfilled')
+const isRejectedAction = action => action.type.endsWith('rejected')
+const isFulfilledAction = action => action.type.endsWith('fulfilled')
 
 const toastSlice = createSlice({
   name: 'toast',
@@ -26,12 +26,12 @@ const toastSlice = createSlice({
             break
         }
         return state
-      });
+      })
   },
 })
 
 export const selectToastMessage = createSelector(
-  (state) => state.toast,
+  state => state.toast,
   ({ message }) => message,
 )
 

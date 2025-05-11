@@ -68,7 +68,7 @@ const SignUp = () => {
                 }}
               >
                 {
-                  (props) => (
+                  props => (
                     <Form
                       noValidate
                       onSubmit={props.handleSubmit}
