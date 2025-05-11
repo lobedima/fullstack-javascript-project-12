@@ -21,10 +21,10 @@ plugins:
 rules:
   semi: 0
   "@stylistic/indent": ["error", 2, {
+    "ignoredNodes": ["TemplateLiteral", "JSXElement"],
     "SwitchCase": 1,
-    "ignoredNodes": ["TemplateLiteral"]
+    "outerIIFEBody": 1
   }]
-  "@stylistic/indent": ["error", 2]
   "react/react-in-jsx-scope": 0
   "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }]
   "react/function-component-definition": [
