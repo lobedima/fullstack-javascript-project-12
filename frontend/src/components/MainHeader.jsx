@@ -1,28 +1,28 @@
-import React, { useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
-import { selectToastMessage } from '../slices/toast.js';
-import { pages as pagesRoutes } from '../utils/routes.js';
-import { selectAuth } from '../slices/auth.js';
+import React, { useEffect } from 'react'
+import Button from 'react-bootstrap/Button'
+import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { ToastContainer, toast } from 'react-toastify'
+import { selectToastMessage } from '../slices/toast.js'
+import { pages as pagesRoutes } from '../utils/routes.js'
+import { selectAuth } from '../slices/auth.js'
 
 const MainHeader = () => {
-  const { t, i18n } = useTranslation('Components', { keyPrefix: 'MainHeader' });
-  const authInfo = useSelector(selectAuth);
+  const { t, i18n } = useTranslation('Components', { keyPrefix: 'MainHeader' })
+  const authInfo = useSelector(selectAuth)
   const handleAccountExit = () => {
-    localStorage.removeItem('user');
-  };
-  const toastMessage = useSelector(selectToastMessage);
+    localStorage.removeItem('user')
+  }
+  const toastMessage = useSelector(selectToastMessage)
   useEffect(() => {
-  }, [authInfo]);
+  }, [authInfo])
 
   const generatorMessages = {
     0: () => toast.success(i18n.t(toastMessage.code, { ns: 'toast' })),
     1: () => toast.error(i18n.t(toastMessage.code, { ns: 'toast' })),
-  };
+  }
 
-  if (toastMessage) generatorMessages[toastMessage.id]();
+  if (toastMessage) generatorMessages[toastMessage.id]()
 
   return (
     <>
@@ -59,7 +59,7 @@ const MainHeader = () => {
         </div>
       </nav>
     </>
-  );
-};
+  )
+}
 
-export default MainHeader;
+export default MainHeader

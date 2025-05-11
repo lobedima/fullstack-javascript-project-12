@@ -1,69 +1,69 @@
 import React, {
   useEffect, useState,
-} from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+} from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { fetchChannels } from '../slices/channels';
-import { authActions, selectAuth } from '../slices/auth';
-import { fetchMessages } from '../slices/messages';
-import AddChannel from '../components/modals/AddChannel';
-import DeleteChannel from '../components/modals/DeleteChannel';
-import RenameChannel from '../components/modals/RenameChannel';
-import { ChannelMessages, InputMessage } from '../components/Chat';
-import Channels from '../components/Channels';
-import { pages as pagesRoutes } from '../utils/routes';
+import { fetchChannels } from '../slices/channels'
+import { authActions, selectAuth } from '../slices/auth'
+import { fetchMessages } from '../slices/messages'
+import AddChannel from '../components/modals/AddChannel'
+import DeleteChannel from '../components/modals/DeleteChannel'
+import RenameChannel from '../components/modals/RenameChannel'
+import { ChannelMessages, InputMessage } from '../components/Chat'
+import Channels from '../components/Channels'
+import { pages as pagesRoutes } from '../utils/routes'
 
 const Main = () => {
-  const navigator = useNavigate();
-  const authSliceInfo = useSelector(selectAuth);
-  const dispatch = useDispatch();
+  const navigator = useNavigate()
+  const authSliceInfo = useSelector(selectAuth)
+  const dispatch = useDispatch()
   useEffect(() => {
     if (!authSliceInfo.token) {
-      const userAuthInfo = JSON.parse(localStorage.getItem('user'));
-      if (!userAuthInfo) navigator(pagesRoutes.login());
+      const userAuthInfo = JSON.parse(localStorage.getItem('user'))
+      if (!userAuthInfo) navigator(pagesRoutes.login())
       else {
         dispatch(fetchChannels(userAuthInfo.token))
           .then((res) => {
             if (!res.error) {
-              dispatch(authActions.setAuth(userAuthInfo));
-              dispatch(fetchMessages(userAuthInfo.token));
+              dispatch(authActions.setAuth(userAuthInfo))
+              dispatch(fetchMessages(userAuthInfo.token))
             } else if (res.error.code === 'ERR_BAD_REQUEST') {
-              navigator(pagesRoutes.login());
-              localStorage.removeItem('user');
-              dispatch(authActions.removeAuth());
+              navigator(pagesRoutes.login())
+              localStorage.removeItem('user')
+              dispatch(authActions.removeAuth())
             }
-          });
+          })
       }
     }
-  }, [dispatch, navigator, authSliceInfo]);
-  const { t } = useTranslation('Components', { keyPrefix: 'Main.Chat' });
-  const [modalVariant, setShowModal] = useState(false);
-  const [idModalChannel, setIdModalChannel] = useState(null);
+  }, [dispatch, navigator, authSliceInfo])
+  const { t } = useTranslation('Components', { keyPrefix: 'Main.Chat' })
+  const [modalVariant, setShowModal] = useState(false)
+  const [idModalChannel, setIdModalChannel] = useState(null)
 
   const modals = {
     addChannel: AddChannel,
     deleteChannel: DeleteChannel,
     renameChannel: RenameChannel,
-  };
+  }
 
   const handleAddModal = () => {
-    setShowModal('addChannel');
-  };
+    setShowModal('addChannel')
+  }
 
   const channelsModals = (id) => ({
     handleDeleteChannel: () => {
-      setIdModalChannel(id);
-      setShowModal('deleteChannel');
+      setIdModalChannel(id)
+      setShowModal('deleteChannel')
     },
     handleRenameChannel: () => {
-      setIdModalChannel(id);
-      setShowModal('renameChannel');
+      setIdModalChannel(id)
+      setShowModal('renameChannel')
     },
-  });
+  })
 
-  const CurrentModal = modals[modalVariant];
+  const CurrentModal = modals[modalVariant]
 
   if (authSliceInfo.token) {
     return (
@@ -116,8 +116,8 @@ const Main = () => {
             : null
         }
       </>
-    );
-  } return null;
-};
+    )
+  } return null
+}
 
-export default Main;
+export default Main

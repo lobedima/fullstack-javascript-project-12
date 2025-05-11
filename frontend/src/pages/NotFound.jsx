@@ -1,15 +1,15 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Card from 'react-bootstrap/Card'
 
 const NotFound = () => {
-  const userData = localStorage.getItem('user');
-  const { t } = useTranslation('Components', { keyPrefix: 'NotFound' });
-  const navigate = useNavigate();
+  const userData = localStorage.getItem('user')
+  const { t } = useTranslation('Components', { keyPrefix: 'NotFound' })
+  const navigate = useNavigate()
   return (
     <Container
       fluid
@@ -31,8 +31,8 @@ const NotFound = () => {
               {t('pageNotFound')}
               <Card.Link
                 onClick={(e) => {
-                  e.preventDefault();
-                  navigate('/');
+                  e.preventDefault()
+                  navigate('/')
                 }}
                 href="/"
               >
@@ -55,8 +55,8 @@ const NotFound = () => {
                       href="/signup"
                       aria-label={t('aria.linkRegisterAccount')}
                       onClick={(e) => {
-                        e.preventDefault();
-                        navigate('/signup');
+                        e.preventDefault()
+                        navigate('/signup')
                       }}
                     >
                       {t('registerAccount')}
@@ -68,7 +68,7 @@ const NotFound = () => {
         </Col>
       </Row>
     </Container>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound

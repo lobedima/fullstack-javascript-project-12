@@ -1,24 +1,24 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import { Formik } from 'formik';
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { useNavigate } from 'react-router-dom';
-import Image from 'react-bootstrap/Image';
-import { useTranslation } from 'react-i18next';
+import React from 'react'
+import { Formik } from 'formik'
+import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Card from 'react-bootstrap/Card'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import { useNavigate } from 'react-router-dom'
+import Image from 'react-bootstrap/Image'
+import { useTranslation } from 'react-i18next'
 
-import loginAvatarImage from '../assets/avatar.jpg';
-import { loginSchema } from '../validation/schema';
-import { loginRequest } from '../network/requests';
-import { pages as pagesRoutes } from '../utils/routes';
+import loginAvatarImage from '../assets/avatar.jpg'
+import { loginSchema } from '../validation/schema'
+import { loginRequest } from '../network/requests'
+import { pages as pagesRoutes } from '../utils/routes'
 
 const Login = () => {
-  const { t } = useTranslation('Components', { keyPrefix: 'Login' });
-  const navigate = useNavigate();
+  const { t } = useTranslation('Components', { keyPrefix: 'Login' })
+  const navigate = useNavigate()
   return (
     <Container
       fluid
@@ -49,14 +49,14 @@ const Login = () => {
                 onSubmit={(values, actions) => {
                   loginRequest(values)
                     .then(() => {
-                      navigate(pagesRoutes.root());
+                      navigate(pagesRoutes.root())
                     })
                     .catch((err) => {
                       if (err.response.status === 401) {
-                        actions.setStatus(401);
-                        actions.setErrors({ password: 'wrongUser' });
-                      } else throw new Error(err);
-                    });
+                        actions.setStatus(401)
+                        actions.setErrors({ password: 'wrongUser' })
+                      } else throw new Error(err)
+                    })
                 }}
               >
                 {
@@ -167,8 +167,8 @@ const Login = () => {
                 href="/signup"
                 aria-label={t('Form.aria.linkRegisterAccount')}
                 onClick={(e) => {
-                  e.preventDefault();
-                  navigate(pagesRoutes.signup());
+                  e.preventDefault()
+                  navigate(pagesRoutes.signup())
                 }}
               >
                 {
@@ -180,7 +180,7 @@ const Login = () => {
         </Col>
       </Row>
     </Container>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

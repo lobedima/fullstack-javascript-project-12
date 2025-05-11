@@ -1,20 +1,19 @@
-import React from 'react';
-import Modal from 'react-bootstrap/Modal';
-import { useFormik } from 'formik';
-import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal'
+import { useFormik } from 'formik'
+import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
 
-import { postNewChannel, channelsSelectors } from '../../slices/channels';
-import { channelsNamingSchema } from '../../validation/schema';
-import { selectAuth } from '../../slices/auth';
+import { postNewChannel, channelsSelectors } from '../../slices/channels'
+import { channelsNamingSchema } from '../../validation/schema'
+import { selectAuth } from '../../slices/auth'
 
 const AddChannel = ({ handleSetState, modalState }) => {
-  const { t } = useTranslation('Components', { keyPrefix: 'AddChannel' });
-  const dispatch = useDispatch();
-  const { token } = useSelector(selectAuth);
-  const allChannels = useSelector(channelsSelectors.selectEntities);
+  const { t } = useTranslation('Components', { keyPrefix: 'AddChannel' })
+  const dispatch = useDispatch()
+  const { token } = useSelector(selectAuth)
+  const allChannels = useSelector(channelsSelectors.selectEntities)
 
   const formik = useFormik({
     initialValues: {
@@ -23,23 +22,23 @@ const AddChannel = ({ handleSetState, modalState }) => {
     validationSchema: channelsNamingSchema,
     onSubmit: ({ channelName }) => {
       if (!formik.errors.channelName) {
-        const channel = Object.values(allChannels).find(({ name }) => channelName === name);
+        const channel = Object.values(allChannels).find(({ name }) => channelName === name)
         if (!channel) {
-          dispatch(postNewChannel({ token, channelName }));
-          handleSetState(false);
+          dispatch(postNewChannel({ token, channelName }))
+          handleSetState(false)
         } else {
           formik.setErrors({
             channelName: t('errors.channelExists'),
-          });
+          })
         }
       }
     },
     validateOnChange: false,
-  });
+  })
 
   const handleClose = () => {
-    handleSetState(false);
-  };
+    handleSetState(false)
+  }
 
   return (
     <Modal show={modalState} onHide={handleClose} centered>
@@ -106,7 +105,7 @@ const AddChannel = ({ handleSetState, modalState }) => {
         </Button>
       </Modal.Footer>
     </Modal>
-  );
-};
+  )
+}
 
-export default AddChannel;
+export default AddChannel

@@ -1,23 +1,22 @@
-import React from 'react';
-import Modal from 'react-bootstrap/Modal';
-import { useFormik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import leo from 'leo-profanity';
+import Modal from 'react-bootstrap/Modal'
+import { useFormik } from 'formik'
+import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import leo from 'leo-profanity'
 
-import { channelsSelectors, renameChannel, selectChannelById } from '../../slices/channels';
-import { channelsNamingSchema } from '../../validation/schema';
-import { selectAuth } from '../../slices/auth';
+import { channelsSelectors, renameChannel, selectChannelById } from '../../slices/channels'
+import { channelsNamingSchema } from '../../validation/schema'
+import { selectAuth } from '../../slices/auth'
 
 const RenameChannel = ({ handleSetState, modalState, extraData }) => {
-  const { t } = useTranslation('Components', { keyPrefix: 'RenameChannel' });
-  const dispatch = useDispatch();
-  const channelId = extraData;
-  const allChannels = useSelector(channelsSelectors.selectEntities);
-  const { token } = useSelector(selectAuth);
-  const { name: currentChannelName } = useSelector(selectChannelById(channelId));
+  const { t } = useTranslation('Components', { keyPrefix: 'RenameChannel' })
+  const dispatch = useDispatch()
+  const channelId = extraData
+  const allChannels = useSelector(channelsSelectors.selectEntities)
+  const { token } = useSelector(selectAuth)
+  const { name: currentChannelName } = useSelector(selectChannelById(channelId))
 
   const formik = useFormik({
     initialValues: {
@@ -26,29 +25,29 @@ const RenameChannel = ({ handleSetState, modalState, extraData }) => {
     validationSchema: channelsNamingSchema,
     onSubmit: ({ channelName }) => {
       if (!formik.errors.channelName) {
-        const channel = Object.values(allChannels).find(({ name }) => channelName === name);
+        const channel = Object.values(allChannels).find(({ name }) => channelName === name)
         if (!channel) {
           if (leo.check(channelName)) {
             formik.setErrors({
               channelName: t('errors.profanity'),
-            });
+            })
           } else {
-            dispatch(renameChannel({ token, channelName, channelId }));
-            handleSetState(false);
+            dispatch(renameChannel({ token, channelName, channelId }))
+            handleSetState(false)
           }
         } else {
           formik.setErrors({
             channelName: t('error.channelExists'),
-          });
+          })
         }
       }
     },
     validateOnChange: true,
-  });
+  })
 
   const handleClose = () => {
-    handleSetState(false);
-  };
+    handleSetState(false)
+  }
 
   return (
     <Modal show={modalState} onHide={handleClose} centered>
@@ -113,7 +112,7 @@ const RenameChannel = ({ handleSetState, modalState, extraData }) => {
         </Button>
       </Modal.Footer>
     </Modal>
-  );
-};
+  )
+}
 
-export default RenameChannel;
+export default RenameChannel

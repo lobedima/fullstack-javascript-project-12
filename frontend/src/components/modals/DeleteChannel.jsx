@@ -1,26 +1,25 @@
-import React from 'react';
-import Modal from 'react-bootstrap/Modal';
-import { useDispatch, useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal'
+import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+import Button from 'react-bootstrap/Button'
 
-import { selectAuth } from '../../slices/auth';
-import { deleteChannel } from '../../slices/channels';
+import { selectAuth } from '../../slices/auth'
+import { deleteChannel } from '../../slices/channels'
 
 const DeleteChannel = ({ handleSetState, modalState, extraData }) => {
-  const { t } = useTranslation('Components', { keyPrefix: 'DeleteChannel' });
-  const dispatch = useDispatch();
-  const { token } = useSelector(selectAuth);
-  const idModalChannel = extraData;
+  const { t } = useTranslation('Components', { keyPrefix: 'DeleteChannel' })
+  const dispatch = useDispatch()
+  const { token } = useSelector(selectAuth)
+  const idModalChannel = extraData
 
   const handleClose = () => {
-    handleSetState(false);
-  };
+    handleSetState(false)
+  }
 
   const handleDelete = () => {
-    dispatch(deleteChannel({ token, channelId: idModalChannel }));
-    handleSetState(false);
-  };
+    dispatch(deleteChannel({ token, channelId: idModalChannel }))
+    handleSetState(false)
+  }
 
   return (
     <Modal show={modalState} onHide={handleClose}>
@@ -55,7 +54,7 @@ const DeleteChannel = ({ handleSetState, modalState, extraData }) => {
         </Button>
       </Modal.Footer>
     </Modal>
-  );
-};
+  )
+}
 
-export default DeleteChannel;
+export default DeleteChannel

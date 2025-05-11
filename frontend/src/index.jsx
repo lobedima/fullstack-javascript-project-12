@@ -1,28 +1,28 @@
-import { ErrorBoundary, Provider as RollBarProvider } from '@rollbar/react';
-import ReactDOM from 'react-dom/client';
-import i18next from 'i18next';
-import React from 'react';
-import { I18nextProvider, initReactI18next } from 'react-i18next';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import leo from 'leo-profanity';
+import { ErrorBoundary, Provider as RollBarProvider } from '@rollbar/react'
+import ReactDOM from 'react-dom/client'
+import i18next from 'i18next'
+import React from 'react'
+import { I18nextProvider, initReactI18next } from 'react-i18next'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import leo from 'leo-profanity'
 
-import './assets/application.scss';
-import resources from './locales/index.js';
-import './network/socket.js';
-import { pages } from './utils/routes.js';
-import MainHeader from './components/MainHeader.jsx';
-import store from './slices/index';
-import NotFound from './pages/NotFound.jsx';
-import SignUp from './pages/SignUp.jsx';
-import Login from './pages/Login.jsx';
-import Main from './pages/Main.jsx';
+import './assets/application.scss'
+import resources from './locales/index.js'
+import './network/socket.js'
+import { pages } from './utils/routes.js'
+import MainHeader from './components/MainHeader.jsx'
+import store from './slices/index'
+import NotFound from './pages/NotFound.jsx'
+import SignUp from './pages/SignUp.jsx'
+import Login from './pages/Login.jsx'
+import Main from './pages/Main.jsx'
 
 const init = async () => {
-  const i18n = i18next.createInstance();
+  const i18n = i18next.createInstance()
 
-  const mode = process.env.NODE_ENV || 'development';
-  const isDevelop = mode === 'development';
+  const mode = process.env.NODE_ENV || 'development'
+  const isDevelop = mode === 'development'
 
   await i18n
     .use(initReactI18next)
@@ -33,18 +33,18 @@ const init = async () => {
       interpolation: {
         escapeValue: false,
       },
-    });
+    })
 
-  leo.clearList();
-  leo.add(leo.getDictionary('en'));
-  leo.add(leo.getDictionary('ru'));
+  leo.clearList()
+  leo.add(leo.getDictionary('en'))
+  leo.add(leo.getDictionary('ru'))
 
   const rollbarConfig = {
     accessToken: process.env.ROLLBACK_API_KEY,
     environment: process.env.ROLLBACK_API_ENV_NAME,
-  };
+  }
 
-  const root = ReactDOM.createRoot(document.getElementById('root'));
+  const root = ReactDOM.createRoot(document.getElementById('root'))
 
   const App = () => (
     <Provider store={store}>
@@ -62,7 +62,7 @@ const init = async () => {
         </div>
       </BrowserRouter>
     </Provider>
-  );
+  )
 
   root.render(
     <RollBarProvider config={rollbarConfig}>
@@ -72,7 +72,7 @@ const init = async () => {
         </I18nextProvider>
       </ErrorBoundary>
     </RollBarProvider>,
-  );
-};
+  )
+}
 
-init();
+init()

@@ -1,26 +1,26 @@
-import React, { useEffect, useRef, useState } from 'react';
-import leo from 'leo-profanity';
-import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import InputGroup from 'react-bootstrap/InputGroup';
+import React, { useEffect, useRef, useState } from 'react'
+import leo from 'leo-profanity'
+import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import InputGroup from 'react-bootstrap/InputGroup'
 
-import { selectMessages, sendMessage } from '../slices/messages';
-import { selectCurrentChannel, selectCurrentChannelId } from '../slices/channels';
-import { selectAuth } from '../slices/auth';
+import { selectMessages, sendMessage } from '../slices/messages'
+import { selectCurrentChannel, selectCurrentChannelId } from '../slices/channels'
+import { selectAuth } from '../slices/auth'
 
 export const ChannelMessages = () => {
-  const { t } = useTranslation('Components', { keyPrefix: 'ChannelMessages' });
+  const { t } = useTranslation('Components', { keyPrefix: 'ChannelMessages' })
 
-  const listEl = useRef(null);
-  const currentChannel = useSelector(selectCurrentChannel);
-  const messages = useSelector(selectMessages);
+  const listEl = useRef(null)
+  const currentChannel = useSelector(selectCurrentChannel)
+  const messages = useSelector(selectMessages)
   useEffect(() => {
-    if (currentChannel) listEl.current.scrollTo(1, listEl.current.scrollHeight);
-  }, [currentChannel]);
+    if (currentChannel) listEl.current.scrollTo(1, listEl.current.scrollHeight)
+  }, [currentChannel])
 
-  if (!currentChannel) return null;
+  if (!currentChannel) return null
   return (
     <>
       <div className="bg-light mb-4 p-3 shadow-sm small">
@@ -40,36 +40,37 @@ export const ChannelMessages = () => {
               <b>{username}</b>
               {`: ${leo.clean(body)}`}
             </div>
-          )) : null}
+          ))
+          : null}
       </div>
     </>
-  );
-};
+  )
+}
 
 export const InputMessage = () => {
-  const { t } = useTranslation('Components', { keyPrefix: 'Main' });
-  const dispatch = useDispatch();
-  const inputContainerEl = useRef(null);
-  const [value, setValue] = useState('');
-  const currentChannelId = useSelector(selectCurrentChannelId);
-  const authData = useSelector(selectAuth);
+  const { t } = useTranslation('Components', { keyPrefix: 'Main' })
+  const dispatch = useDispatch()
+  const inputContainerEl = useRef(null)
+  const [value, setValue] = useState('')
+  const currentChannelId = useSelector(selectCurrentChannelId)
+  const authData = useSelector(selectAuth)
   const handlerSendMessage = (btnEvent) => {
-    btnEvent.preventDefault();
-    if (value === '') return;
+    btnEvent.preventDefault()
+    if (value === '') return
     const message = {
       body: value,
       channelId: currentChannelId,
       username: authData.username,
-    };
+    }
     dispatch(sendMessage({
       token: authData.token,
       messageObj: message,
-    }));
-    setValue('');
-    const messagesContainerEl = inputContainerEl.current.previousSibling;
+    }))
+    setValue('')
+    const messagesContainerEl = inputContainerEl.current.previousSibling
     messagesContainerEl
-      .scrollTo(0, messagesContainerEl.scrollHeight);
-  };
+      .scrollTo(0, messagesContainerEl.scrollHeight)
+  }
   return (
     <div className="mt-auto px-5 py-3" ref={inputContainerEl}>
       <Form
@@ -84,8 +85,8 @@ export const InputMessage = () => {
             value={value}
             aria-label={t('InputMessage.aria.enterMessage')}
             onChange={(e) => {
-              e.preventDefault();
-              setValue(e.target.value);
+              e.preventDefault()
+              setValue(e.target.value)
             }}
           />
           <Button
@@ -114,5 +115,5 @@ export const InputMessage = () => {
         </InputGroup>
       </Form>
     </div>
-  );
-};
+  )
+}
