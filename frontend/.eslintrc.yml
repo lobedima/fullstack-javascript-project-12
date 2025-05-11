@@ -21,9 +21,17 @@ plugins:
 rules:
   semi: 0
   "@stylistic/indent": ["error", 2, {
-    "ignoredNodes": ["TemplateLiteral", "JSXElement"],
+    "ignoredNodes": [
+      "TemplateLiteral",
+      "JSXElement",
+      "JSXAttribute",
+      "JSXSpreadAttribute"
+    ],
     "SwitchCase": 1,
-    "outerIIFEBody": 1
+    "outerIIFEBody": 1,
+    "MemberExpression": 1,
+    "FunctionExpression": {"parameters": "first"},
+    "CallExpression": {"arguments": "first"}
   }]
   "react/react-in-jsx-scope": 0
   "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }]
@@ -49,5 +57,6 @@ rules:
   "no-underscore-dangle": [2, { "allow": ["__filename", "__dirname"] }]
   "testing-library/no-debug": 0
   "@stylistic/arrow-parens": ["error", "always"]
-  '@stylistic/multiline-ternary': ['error', 'always']
+  "@stylistic/multiline-ternary": ["error", "always"]
   "@stylistic/brace-style": ["error", "1tbs", { "allowSingleLine": true }]
+  
