@@ -16,35 +16,33 @@ parserOptions:
 
 plugins:
   - react
-  - stylistic
+  - "@stylistic"
 
 rules:
   semi: 0
-  '@stylistic/semi': ['error', 'never']
-  '@stylistic/indent': ['error', 2, { SwitchCase: 1 }]
-  'react/react-in-jsx-scope': 0
-  'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }]
-  'react/function-component-definition': [
+  "@stylistic/semi": ["error", "never"]  # Без @
+  "@stylistic/indent": ["error", 2]  # Без @
+  "react/react-in-jsx-scope": 0
+  "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }]
+  "react/function-component-definition": [
     2,
     { 
-      namedComponents: 'arrow-function',
-      unnamedComponents: 'arrow-function'
+      namedComponents: "arrow-function",
+      unnamedComponents: "arrow-function"
     }
   ]
-  'no-console': 0
-  'react/prop-types': 0
-  'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }]
-  no-undef: 0
-  import/extensions: 0
-  import/no-unresolved: 0
-  react/prop-types: 0
-  no-console: 0
-  functional/no-conditional-statement: 0
-  functional/no-expression-statement: 0
-  functional/immutable-data: 0
-  functional/functional-parameters: 0
-  functional/no-try-statement: 0
-  functional/no-throw-statement: 0
-  no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }]
-  testing-library/no-debug: 0
-  "@stylistic/arrow-parens": ["error", "as-needed", { "requireForBlockBody": true }]
+  "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }]
+  "no-undef": 0
+  "import/extensions": 0
+  "import/no-unresolved": 0
+  "react/prop-types": 0
+  "no-console": 0
+  "functional/no-conditional-statement": 0
+  "functional/no-expression-statement": 0
+  "functional/immutable-data": 0
+  "functional/functional-parameters": 0
+  "functional/no-try-statement": 0
+  "functional/no-throw-statement": 0
+  "no-underscore-dangle": [2, { "allow": ["__filename", "__dirname"] }]
+  "testing-library/no-debug": 0
+  "@stylistic/arrow-parens": ["error", "always"]
