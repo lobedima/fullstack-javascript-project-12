@@ -47,7 +47,7 @@ const NotFound = () => {
                     >
                       <span
                         className="m-1"
-                        >
+                      >
                         {t('noAccount')}
                       </span>
                       <Card.Link
@@ -57,7 +57,7 @@ const NotFound = () => {
                           e.preventDefault()
                           navigate('/signup')
                         }}
-                         >
+                      >
                         {t('registerAccount')}
                       </Card.Link>
                     </Card.Footer>
