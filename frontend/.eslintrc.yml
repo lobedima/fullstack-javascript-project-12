@@ -57,7 +57,8 @@ rules:
   "no-underscore-dangle": [2, { "allow": ["__filename", "__dirname"] }]
   "testing-library/no-debug": 0
   "@stylistic/arrow-parens": ["error", "as-needed", {
-    "requireForBlockBody": false 
+    "requireForBlockBody": false,
+    "onlyOneParam": true
   }]
   "@stylistic/multiline-ternary": ["error", "always"]
   "@stylistic/brace-style": ["error", "1tbs", { "allowSingleLine": true }]
