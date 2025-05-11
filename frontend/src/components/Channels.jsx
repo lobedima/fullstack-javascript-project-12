@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+/* eslint-disable @stylistic/indent */
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Dropdown from 'react-bootstrap/Dropdown'
@@ -96,19 +98,19 @@ const ChannelsList = ({ channelsModals }) => {
     <ul id="channels-box" className="nav flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block">
       {channels
         ? Object.values(channels).map((entity) => {
-          const { id } = entity
-          if (Number(id) === Number(currentChannelId)) {
-            return (
-              <Channel
-                channelEntity={entity}
-                key={id}
-                modalHandlers={channelsModals(id)}
-                selected
-              />
-            )
-          }
-          return <Channel channelEntity={entity} key={id} modalHandlers={channelsModals(id)} />
-        })
+            const { id } = entity
+            if (Number(id) === Number(currentChannelId)) {
+              return (
+                <Channel
+                  channelEntity={entity}
+                  key={id}
+                  modalHandlers={channelsModals(id)}
+                  selected
+                />
+              )
+            }
+            return <Channel channelEntity={entity} key={id} modalHandlers={channelsModals(id)} />
+          })
         : null}
     </ul>
   )

@@ -1,6 +1,3 @@
-/* eslint-disable indent */
-/* eslint-disable @stylistic/indent */
-/* eslint-disable react/jsx-indent */
 import { useEffect, useRef, useState } from 'react'
 import leo from 'leo-profanity'
 import { useTranslation } from 'react-i18next'
@@ -39,11 +36,11 @@ export const ChannelMessages = () => {
       <div id="messages-box" className="chat-messages overflow-auto px-5" ref={listEl}>
         {messages.length > 0
           ? messages.map(({ body, username, id }) => (
-              <div className="text-break mb-2" key={id}>
-                <b>{username}</b>
-                {`: ${leo.clean(body)}`}
-              </div>
-            ))
+            <div className="text-break mb-2" key={id}>
+              <b>{username}</b>
+              {`: ${leo.clean(body)}`}
+            </div>
+          ))
           : null}
       </div>
     </>
