@@ -4,7 +4,6 @@ import {
   createAsyncThunk,
   createSelector,
 } from '@reduxjs/toolkit'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios'
 import { messages as messagesRoute } from '../utils/routes.js'
 import { deleteChannel } from './channels.js'

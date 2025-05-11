@@ -1,3 +1,4 @@
+/* global process */
 import { ErrorBoundary, Provider as RollBarProvider } from '@rollbar/react'
 import ReactDOM from 'react-dom/client'
 import i18next from 'i18next'

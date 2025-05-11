@@ -43,20 +43,20 @@ const NotFound = () => {
                 ? null
                 : (
                     <Card.Footer
-                        className="text-center p-3"
-                   >
-                      <span
-                        className="m-1"
-                      >
-                        {t('noAccount')}
-                      </span>
-                      <Card.Link
-                        href="/signup"
-                        aria-label={t('aria.linkRegisterAccount')}
-                        onClick={(e) => {
-                          e.preventDefault()
-                      navigate('/signup')
-                  }}
+                          className="text-center p-3"
+                    >
+                        <span
+                          className="m-1"
+                        >
+                          {t('noAccount')}
+                        </span>
+                        <Card.Link
+                          href="/signup"
+                          aria-label={t('aria.linkRegisterAccount')}
+                          onClick={(e) => {
+                            e.preventDefault()
+                        navigate('/signup')
+                    }}
                       >
                         {t('registerAccount')}
                       </Card.Link>

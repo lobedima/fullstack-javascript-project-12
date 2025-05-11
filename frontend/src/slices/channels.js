@@ -3,7 +3,6 @@ import {
   createEntityAdapter,
   createAsyncThunk,
 } from '@reduxjs/toolkit'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios'
 import { channels as channelsRoute } from '../utils/routes.js'
 
