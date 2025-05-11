@@ -24,14 +24,14 @@ const Main = () => {
       const userAuthInfo = JSON.parse(localStorage.getItem('user'))
       if (!userAuthInfo) {
         navigator(pagesRoutes.login())
-      } 
+      }
       else {
         dispatch(fetchChannels(userAuthInfo.token))
           .then((res) => {
             if (!res.error) {
               dispatch(authActions.setAuth(userAuthInfo))
               dispatch(fetchMessages(userAuthInfo.token))
-            } 
+            }
             else if (res.error.code === 'ERR_BAD_REQUEST') {
               navigator(pagesRoutes.login())
               localStorage.removeItem('user')

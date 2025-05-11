@@ -31,12 +31,12 @@ const RenameChannel = ({ handleSetState, modalState, extraData }) => {
             formik.setErrors({
               channelName: t('errors.profanity'),
             })
-          } 
+          }
           else {
             dispatch(renameChannel({ token, channelName, channelId }))
             handleSetState(false)
           }
-        } 
+        }
         else {
           formik.setErrors({
             channelName: t('error.channelExists'),

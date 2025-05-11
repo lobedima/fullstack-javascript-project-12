@@ -53,7 +53,7 @@ const Login = () => {
                       if (err.response.status === 401) {
                         actions.setStatus(401)
                         actions.setErrors({ password: 'wrongUser' })
-                      } 
+                      }
                       else throw new Error(err)
                     })
                 }}
