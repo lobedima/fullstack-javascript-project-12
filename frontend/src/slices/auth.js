@@ -1,18 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { fetchChannels } from './channels.js';
-
-const getStoredUser = () => {
-  const userData = localStorage.getItem('user');
-  return userData ? JSON.parse(userData) : null;
-};
-
-const storeUser = (user) => {
-  localStorage.setItem('user', JSON.stringify(user));
-};
-
-const clearStoredUser = () => {
-  localStorage.removeItem('user');
-};
+import { createSlice } from '@reduxjs/toolkit'
+import { fetchChannels } from './channels.js'
 
 const authSlice = createSlice({
   name: 'auth',
@@ -21,29 +8,21 @@ const authSlice = createSlice({
     token: null,
   },
   reducers: {
-    setAuth: (state, { payload }) => {
-      storeUser(payload);
-      return Object.assign(state, payload);
-    },
-    removeAuth: () => {
-      clearStoredUser();
-      return { username: null, token: null };
-    },
-    restoreAuth: (state) => {
-      const user = getStoredUser();
-      return user ? { ...state, ...user } : state;
-    },
-  },
-  extraReducers: (builder) =>
-    builder.addCase(fetchChannels.rejected, (state, { error }) => {
-      if (error.code === 'ERR_BAD_REQUEST') {
-        clearStoredUser();
-        return { username: null, token: null };
-      }
-      return state;
+    setAuth: (state, { payload }) => Object.assign(state, payload),
+    removeAuth: () => ({
+      username: null,
+      token: null,
     }),
-});
+  },
+  extraReducers: builder => builder
+    .addCase(fetchChannels.rejected, (state, payload) => {
+      if (payload.error.code === 'ERR_BAD_REQUEST') {
+        authSlice.actions.removeAuth()
+        localStorage.removeItem('user')
+      }
+    }),
+})
 
-export const selectAuth = (state) => state.auth;
-export const authActions = authSlice.actions;
-export default authSlice.reducer;
+export const selectAuth = state => state.auth
+export const authActions = authSlice.actions
+export default authSlice.reducer
