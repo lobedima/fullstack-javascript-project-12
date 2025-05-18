@@ -1,6 +1,6 @@
 // pages/Main.jsx
 import { useEffect, useState } from 'react'
-import { useDispatch, } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import { fetchChannels } from '../slices/channels'

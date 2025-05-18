@@ -33,9 +33,9 @@ const App = () => (
             path={pages.root()}
             element={
               (
-              <PrivateRoute>
-                <Main />
-              </PrivateRoute>
+                <PrivateRoute>
+                  <Main />
+                </PrivateRoute>
               )
             }
           />
