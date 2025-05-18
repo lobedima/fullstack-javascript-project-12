@@ -1,11 +1,10 @@
-// slices/modals.js
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 
 const modalsSlice = createSlice({
   name: 'modals',
   initialState: {
     isOpen: false,
-    type: null,  // 'addChannel', 'deleteChannel', 'renameChannel'
+    type: null,
     channelId: null,
   },
   reducers: {
@@ -21,8 +20,8 @@ const modalsSlice = createSlice({
       channelId: null,
     }),
   },
-});
+})
 
-export const { openModal, closeModal } = modalsSlice.actions;
-export const selectModals = (state) => state.modals;
-export default modalsSlice.reducer;
+export const { openModal, closeModal } = modalsSlice.actions
+export const selectModals = state => state.modals
+export default modalsSlice.reducer

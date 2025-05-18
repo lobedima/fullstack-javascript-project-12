@@ -1,29 +1,27 @@
-// components/ModalManager.jsx
-import { useSelector, useDispatch } from 'react-redux';
-import { closeModal } from '../slices/modals';
-import AddChannel from './modals/AddChannel';
-import DeleteChannel from './modals/DeleteChannel';
-import RenameChannel from './modals/RenameChannel';
+import { useSelector, useDispatch } from 'react-redux'
+import { closeModal } from '../slices/modals'
+import AddChannel from './modals/AddChannel'
+import DeleteChannel from './modals/DeleteChannel'
+import RenameChannel from './modals/RenameChannel'
 
 const modalComponents = {
   addChannel: AddChannel,
   deleteChannel: DeleteChannel,
   renameChannel: RenameChannel,
-};
+}
 
 const ModalManager = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const { isOpen, type, channelId } = useSelector((state) => state.modals);
+  const { isOpen, type, channelId } = useSelector(state => state.modals)
 
-  if (!isOpen) return null;
+  if (!isOpen) return null
 
-  const CurrentModal = modalComponents[type];
+  const CurrentModal = modalComponents[type]
 
-  // Обработчик закрытия модалки
   const handleClose = () => {
-    dispatch(closeModal());
-  };
+    dispatch(closeModal())
+  }
 
   return (
     <CurrentModal
@@ -31,7 +29,7 @@ const ModalManager = () => {
       modalState={type}
       extraData={channelId}
     />
-  );
-};
+  )
+}
 
-export default ModalManager;
+export default ModalManager

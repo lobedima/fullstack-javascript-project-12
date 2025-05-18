@@ -5,10 +5,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import leo from 'leo-profanity'
 
-import { 
-  channelsSelectors, 
-  channelsActions, 
-  selectCurrentChannelId 
+import {
+  channelsSelectors,
+  channelsActions,
+  selectCurrentChannelId,
 } from '../slices/channels'
 import { openModal } from '../slices/modals'
 
@@ -25,16 +25,16 @@ const Channel = ({ channelEntity, selected }) => {
   }
 
   const handleDelete = () => {
-    dispatch(openModal({ 
-      type: 'deleteChannel', 
-      channelId: id 
+    dispatch(openModal({
+      type: 'deleteChannel',
+      channelId: id,
     }))
   }
 
   const handleRename = () => {
-    dispatch(openModal({ 
-      type: 'renameChannel', 
-      channelId: id 
+    dispatch(openModal({
+      type: 'renameChannel',
+      channelId: id,
     }))
   }
 
@@ -93,11 +93,11 @@ const ChannelsList = () => {
   const channels = useSelector(channelsSelectors.selectEntities)
 
   return (
-    <ul 
-      id="channels-box" 
+    <ul
+      id="channels-box"
       className="nav flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block"
     >
-      {channels && Object.values(channels).map((entity) => (
+      {channels && Object.values(channels).map(entity => (
         <Channel
           channelEntity={entity}
           key={entity.id}
