@@ -1,10 +1,10 @@
 // pages/Main.jsx
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import { fetchChannels } from '../slices/channels'
-import { authActions, selectAuth, getStoredUser } from '../slices/auth'
+import { authActions, getStoredUser } from '../slices/auth'
 import { fetchMessages } from '../slices/messages'
 import AddChannel from '../components/modals/AddChannel'
 import DeleteChannel from '../components/modals/DeleteChannel'
@@ -24,7 +24,7 @@ const Main = () => {
         .then((res) => {
           if (!res.error) {
             dispatch(fetchMessages(userAuthInfo.token))
-          } 
+          }
           else if (res.error.code === 'ERR_BAD_REQUEST') {
             dispatch(authActions.removeAuth())
           }
