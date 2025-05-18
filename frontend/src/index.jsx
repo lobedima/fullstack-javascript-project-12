@@ -9,7 +9,7 @@ import leo from 'leo-profanity'
 
 import './assets/application.scss'
 import resources from './locales/index.js'
-import './network/socket.js'
+import { initSocketListeners } from './network/socket.js'
 import { pages } from './utils/routes.js'
 import MainHeader from './components/MainHeader.jsx'
 import store from './slices/index'
@@ -38,6 +38,8 @@ const init = async () => {
   leo.clearList()
   leo.add(leo.getDictionary('en'))
   leo.add(leo.getDictionary('ru'))
+
+  initSocketListeners()
 
   const rollbarConfig = {
     accessToken: process.env.ROLLBACK_API_KEY,
