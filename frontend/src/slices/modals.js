@@ -13,7 +13,7 @@ const modalsSlice = createSlice({
       type: payload.type,
       channelId: payload.channelId || null,
     }),
-    closeModal: (state) => ({
+    closeModal: state => ({
       ...state,
       isOpen: false,
       type: null,
