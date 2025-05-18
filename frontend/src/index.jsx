@@ -32,9 +32,9 @@ const App = () => (
           <Route
             path={pages.root()}
             element={
-              <PrivateRoute>
+              (<PrivateRoute>
                 <Main />
-              </PrivateRoute>
+              </PrivateRoute>)
             }
           />
           <Route path="*" element={<NotFound />} />
