@@ -3,7 +3,7 @@ import { channelsActions } from '../slices/channels.js'
 import { messagesActions } from '../slices/messages.js'
 import store from '../slices/index.js'
 
-const socket = io();
+const socket = io()
 
 export const initSocketListeners = () => {
   socket
