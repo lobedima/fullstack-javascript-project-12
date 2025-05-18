@@ -6,11 +6,9 @@ import { useTranslation } from 'react-i18next'
 import { fetchChannels } from '../slices/channels'
 import { authActions, getStoredUser } from '../slices/auth'
 import { fetchMessages } from '../slices/messages'
-import AddChannel from '../components/modals/AddChannel'
-import DeleteChannel from '../components/modals/DeleteChannel'
-import RenameChannel from '../components/modals/RenameChannel'
 import { ChannelMessages, InputMessage } from '../components/Chat'
 import Channels from '../components/Channels'
+import ModalManager from '../components/ModalManager'
 import PlusIcon from '../assets/PlusIcon'
 
 const Main = () => {
@@ -24,8 +22,7 @@ const Main = () => {
         .then((res) => {
           if (!res.error) {
             dispatch(fetchMessages(userAuthInfo.token))
-          }
-          else if (res.error.code === 'ERR_BAD_REQUEST') {
+          } else if (res.error.code === 'ERR_BAD_REQUEST') {
             dispatch(authActions.removeAuth())
           }
         })
@@ -35,12 +32,6 @@ const Main = () => {
   const { t } = useTranslation('Components', { keyPrefix: 'Main.Chat' })
   const [modalVariant, setShowModal] = useState(false)
   const [idModalChannel, setIdModalChannel] = useState(null)
-
-  const modals = {
-    addChannel: AddChannel,
-    deleteChannel: DeleteChannel,
-    renameChannel: RenameChannel,
-  }
 
   const handleAddModal = () => {
     setShowModal('addChannel')
@@ -56,8 +47,6 @@ const Main = () => {
       setShowModal('renameChannel')
     },
   })
-
-  const CurrentModal = modals[modalVariant]
 
   return (
     <>
@@ -86,13 +75,11 @@ const Main = () => {
           </div>
         </div>
       </div>
-      {modalVariant && (
-        <CurrentModal
-          handleSetState={setShowModal}
-          modalState={modalVariant}
-          extraData={idModalChannel}
-        />
-      )}
+      <ModalManager
+        modalType={modalVariant}
+        onClose={() => setShowModal(false)}
+        modalData={idModalChannel}
+      />
     </>
   )
 }

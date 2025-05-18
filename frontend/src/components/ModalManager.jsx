@@ -1,4 +1,3 @@
-// components/ModalManager.jsx
 import AddChannel from './modals/AddChannel'
 import DeleteChannel from './modals/DeleteChannel'
 import RenameChannel from './modals/RenameChannel'
@@ -14,7 +13,7 @@ const ModalManager = ({ modalType, onClose, modalData }) => {
 
   const CurrentModal = modalComponents[modalType]
   
-  return (
+return (
     <CurrentModal
       handleSetState={onClose}
       modalState={modalType}
