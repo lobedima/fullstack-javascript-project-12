@@ -18,6 +18,24 @@ import SignUp from './pages/SignUp.jsx'
 import Login from './pages/Login.jsx'
 import Main from './pages/Main.jsx'
 
+const root = ReactDOM.createRoot(document.getElementById('root'))
+
+const App = () => (
+  <Provider store={store}>
+    <BrowserRouter>
+      <div className="d-flex flex-column h-100">
+        <MainHeader />
+        <Routes>
+          <Route path={pages.signup()} element={<SignUp />} />
+          <Route path={pages.login()} element={<Login />} />
+          <Route path={pages.root()} element={<Main />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  </Provider>
+)
+
 const init = async () => {
   const i18n = i18next.createInstance()
 
@@ -45,26 +63,6 @@ const init = async () => {
     accessToken: process.env.ROLLBACK_API_KEY,
     environment: process.env.ROLLBACK_API_ENV_NAME,
   }
-
-  const root = ReactDOM.createRoot(document.getElementById('root'))
-
-  const App = () => (
-    <Provider store={store}>
-      <BrowserRouter>
-        <div
-          className="d-flex flex-column h-100"
-        >
-          <MainHeader />
-          <Routes>
-            <Route path={pages.signup()} element={<SignUp />} />
-            <Route path={pages.login()} element={<Login />} />
-            <Route path={pages.root()} element={<Main />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
-    </Provider>
-  )
 
   root.render(
     <RollBarProvider config={rollbarConfig}>
