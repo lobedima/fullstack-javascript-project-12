@@ -17,6 +17,7 @@ import NotFound from './pages/NotFound.jsx'
 import SignUp from './pages/SignUp.jsx'
 import Login from './pages/Login.jsx'
 import Main from './pages/Main.jsx'
+import PrivateRoute from './components/PrivateRoute.jsx'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -28,7 +29,14 @@ const App = () => (
         <Routes>
           <Route path={pages.signup()} element={<SignUp />} />
           <Route path={pages.login()} element={<Login />} />
-          <Route path={pages.root()} element={<Main />} />
+          <Route
+            path={pages.root()}
+            element={
+              <PrivateRoute>
+                <Main />
+              </PrivateRoute>
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
