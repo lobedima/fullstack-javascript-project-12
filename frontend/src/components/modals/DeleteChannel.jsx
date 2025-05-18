@@ -5,35 +5,52 @@ import Button from 'react-bootstrap/Button'
 
 import { selectAuth } from '../../slices/auth'
 import { deleteChannel } from '../../slices/channels'
-import { closeModal } from '../../slices/modals'
 
-const DeleteChannel = () => {
+const DeleteChannel = ({ handleSetState, modalState, extraData }) => {
   const { t } = useTranslation('Components', { keyPrefix: 'DeleteChannel' })
   const dispatch = useDispatch()
   const { token } = useSelector(selectAuth)
-  const { channelId } = useSelector(state => state.modals)
+  const idModalChannel = extraData
 
   const handleClose = () => {
-    dispatch(closeModal())
+    handleSetState(false)
   }
 
   const handleDelete = () => {
-    dispatch(deleteChannel({ token, channelId }))
-    dispatch(closeModal())
+    dispatch(deleteChannel({ token, channelId: idModalChannel }))
+    handleSetState(false)
   }
 
   return (
-    <Modal show={true} onHide={handleClose}>
+    <Modal show={modalState} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{t('title')}</Modal.Title>
+        <Modal.Title>
+          {
+            t('title')
+          }
+        </Modal.Title>
       </Modal.Header>
-      <Modal.Body>{t('confirm')}</Modal.Body>
+      <Modal.Body>
+        {
+          t('confirm')
+        }
+      </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          {t('cancel')}
+        <Button
+          variant="secondary"
+          onClick={handleClose}
+        >
+          {
+            t('cancel')
+          }
         </Button>
-        <Button variant="danger" onClick={handleDelete}>
-          {t('delete')}
+        <Button
+          variant="danger"
+          onClick={handleDelete}
+        >
+          {
+            t('delete')
+          }
         </Button>
       </Modal.Footer>
     </Modal>
