@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
+import { pages } from '../utils/routes'
 
 const NotFound = () => {
   const userData = localStorage.getItem('user')
@@ -31,9 +32,9 @@ const NotFound = () => {
               <Card.Link
                 onClick={(e) => {
                   e.preventDefault()
-                  navigate('/')
+                  navigate(pages.root())
                 }}
-                href="/"
+                href={pages.root()}
               >
                 {t('backToMain')}
               </Card.Link>
@@ -51,11 +52,11 @@ const NotFound = () => {
                         {t('noAccount')}
                       </span>
                       <Card.Link
-                        href="/signup"
+                        href={pages.signup()}
                         aria-label={t('aria.linkRegisterAccount')}
                         onClick={(e) => {
                           e.preventDefault()
-                          navigate('/signup')
+                          navigate(pages.signup())
                         }}
                       >
                         {t('registerAccount')}
