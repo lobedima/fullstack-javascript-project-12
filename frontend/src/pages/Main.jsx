@@ -1,11 +1,12 @@
 // pages/Main.jsx
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import { fetchChannels } from '../slices/channels'
 import { authActions, getStoredUser } from '../slices/auth'
 import { fetchMessages } from '../slices/messages'
+import { openModal } from '../slices/modals'
 import { ChannelMessages, InputMessage } from '../components/Chat'
 import Channels from '../components/Channels'
 import ModalManager from '../components/ModalManager'
@@ -22,8 +23,7 @@ const Main = () => {
         .then((res) => {
           if (!res.error) {
             dispatch(fetchMessages(userAuthInfo.token))
-          }
-          else if (res.error.code === 'ERR_BAD_REQUEST') {
+          } else if (res.error.code === 'ERR_BAD_REQUEST') {
             dispatch(authActions.removeAuth())
           }
         })
@@ -31,21 +31,17 @@ const Main = () => {
   }, [dispatch])
 
   const { t } = useTranslation('Components', { keyPrefix: 'Main.Chat' })
-  const [modalVariant, setShowModal] = useState(false)
-  const [idModalChannel, setIdModalChannel] = useState(null)
 
   const handleAddModal = () => {
-    setShowModal('addChannel')
+    dispatch(openModal({ type: 'addChannel' }))
   }
 
-  const channelsModals = id => ({
+  const channelsModals = (id) => ({
     handleDeleteChannel: () => {
-      setIdModalChannel(id)
-      setShowModal('deleteChannel')
+      dispatch(openModal({ type: 'deleteChannel', id }))
     },
     handleRenameChannel: () => {
-      setIdModalChannel(id)
-      setShowModal('renameChannel')
+      dispatch(openModal({ type: 'renameChannel', id }))
     },
   })
 
@@ -76,11 +72,7 @@ const Main = () => {
           </div>
         </div>
       </div>
-      <ModalManager
-        modalType={modalVariant}
-        onClose={() => setShowModal(false)}
-        modalData={idModalChannel}
-      />
+      <ModalManager />
     </>
   )
 }
