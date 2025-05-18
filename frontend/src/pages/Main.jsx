@@ -26,7 +26,7 @@ const Main = () => {
       const userAuthInfo = getStoredUser()
       if (!userAuthInfo) {
         navigator(pagesRoutes.login())
-      } 
+      }
       else {
         dispatch(authActions.initAuth())
         dispatch(fetchChannels(userAuthInfo.token))
