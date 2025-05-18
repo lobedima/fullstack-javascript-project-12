@@ -22,7 +22,8 @@ const Main = () => {
         .then((res) => {
           if (!res.error) {
             dispatch(fetchMessages(userAuthInfo.token))
-          } else if (res.error.code === 'ERR_BAD_REQUEST') {
+          } 
+          else if (res.error.code === 'ERR_BAD_REQUEST') {
             dispatch(authActions.removeAuth())
           }
         })

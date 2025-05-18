@@ -12,8 +12,8 @@ const ModalManager = ({ modalType, onClose, modalData }) => {
   if (!modalType) return null
 
   const CurrentModal = modalComponents[modalType]
-  
-return (
+
+  return (
     <CurrentModal
       handleSetState={onClose}
       modalState={modalType}
