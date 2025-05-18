@@ -1,11 +1,11 @@
-// pages/Main.jsx
-import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import { fetchChannels } from '../slices/channels'
 import { authActions, getStoredUser } from '../slices/auth'
 import { fetchMessages } from '../slices/messages'
+import { openModal } from '../slices/modals'
 import { ChannelMessages, InputMessage } from '../components/Chat'
 import Channels from '../components/Channels'
 import ModalManager from '../components/ModalManager'
@@ -13,6 +13,7 @@ import PlusIcon from '../assets/PlusIcon'
 
 const Main = () => {
   const dispatch = useDispatch()
+  const { t } = useTranslation('Components', { keyPrefix: 'Main.Chat' })
 
   useEffect(() => {
     const userAuthInfo = getStoredUser()
@@ -30,24 +31,9 @@ const Main = () => {
     }
   }, [dispatch])
 
-  const { t } = useTranslation('Components', { keyPrefix: 'Main.Chat' })
-  const [modalVariant, setShowModal] = useState(false)
-  const [idModalChannel, setIdModalChannel] = useState(null)
-
   const handleAddModal = () => {
-    setShowModal('addChannel')
+    dispatch(openModal({ type: 'addChannel' }))
   }
-
-  const channelsModals = id => ({
-    handleDeleteChannel: () => {
-      setIdModalChannel(id)
-      setShowModal('deleteChannel')
-    },
-    handleRenameChannel: () => {
-      setIdModalChannel(id)
-      setShowModal('renameChannel')
-    },
-  })
 
   return (
     <>
@@ -66,7 +52,7 @@ const Main = () => {
                 <span className="visually-hidden">{t('addButton')}</span>
               </button>
             </div>
-            <Channels channelsModals={channelsModals} />
+            <Channels />
           </div>
           <div className="col p-0 h-100">
             <div className="d-flex flex-column h-100">
@@ -76,11 +62,7 @@ const Main = () => {
           </div>
         </div>
       </div>
-      <ModalManager
-        modalType={modalVariant}
-        onClose={() => setShowModal(false)}
-        modalData={idModalChannel}
-      />
+      <ModalManager />
     </>
   )
 }
