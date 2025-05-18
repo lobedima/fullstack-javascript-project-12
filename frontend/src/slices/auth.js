@@ -30,7 +30,7 @@ const authSlice = createSlice({
         return Object.assign(state, user)
       }
       return state
-    }
+    },
   },
   extraReducers: builder => builder
     .addCase(fetchChannels.rejected, (state, payload) => {

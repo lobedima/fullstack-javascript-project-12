@@ -20,13 +20,14 @@ const Main = () => {
   const navigator = useNavigate()
   const authSliceInfo = useSelector(selectAuth)
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
     if (!authSliceInfo.token) {
       const userAuthInfo = getStoredUser()
       if (!userAuthInfo) {
         navigator(pagesRoutes.login())
-      } else {
+      } 
+      else {
         dispatch(authActions.initAuth())
         dispatch(fetchChannels(userAuthInfo.token))
           .then((res) => {
