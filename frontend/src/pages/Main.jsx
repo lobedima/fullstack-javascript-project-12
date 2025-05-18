@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { fetchChannels } from '../slices/channels'
-import { authActions, selectAuth } from '../slices/auth'
+import { authActions, selectAuth, getStoredUser } from '../slices/auth'
 import { fetchMessages } from '../slices/messages'
 import AddChannel from '../components/modals/AddChannel'
 import DeleteChannel from '../components/modals/DeleteChannel'
@@ -20,28 +20,28 @@ const Main = () => {
   const navigator = useNavigate()
   const authSliceInfo = useSelector(selectAuth)
   const dispatch = useDispatch()
+  
   useEffect(() => {
     if (!authSliceInfo.token) {
-      const userAuthInfo = JSON.parse(localStorage.getItem('user'))
+      const userAuthInfo = getStoredUser()
       if (!userAuthInfo) {
         navigator(pagesRoutes.login())
-      }
-      else {
+      } else {
+        dispatch(authActions.initAuth())
         dispatch(fetchChannels(userAuthInfo.token))
           .then((res) => {
             if (!res.error) {
-              dispatch(authActions.setAuth(userAuthInfo))
               dispatch(fetchMessages(userAuthInfo.token))
             }
             else if (res.error.code === 'ERR_BAD_REQUEST') {
               navigator(pagesRoutes.login())
-              localStorage.removeItem('user')
               dispatch(authActions.removeAuth())
             }
           })
       }
     }
   }, [dispatch, navigator, authSliceInfo])
+
   const { t } = useTranslation('Components', { keyPrefix: 'Main.Chat' })
   const [modalVariant, setShowModal] = useState(false)
   const [idModalChannel, setIdModalChannel] = useState(null)
