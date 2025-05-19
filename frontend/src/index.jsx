@@ -31,11 +31,11 @@ const App = () => (
           <Route path={pages.login()} element={<Login />} />
           <Route
             path={pages.root()}
-            element={
+            element={(
               <PrivateRoute>
                 <Main />
               </PrivateRoute>
-            }
+            )}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
